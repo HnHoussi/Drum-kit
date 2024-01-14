@@ -13,7 +13,7 @@ function audioHandling(audioId) {
 }
 
 function keyDown(event) {
-    var clickedButton = document.querySelector('.child-btn[data-key="' + event.key.toUpperCase() + '"]');
+    const clickedButton = document.querySelector('.child-btn[data-key="' + event.key.toUpperCase() + '"]');
 
     if (clickedButton) {
         animationHandling(clickedButton);
@@ -21,4 +21,13 @@ function keyDown(event) {
     }
 }
 
+function mouseClick(event) {
+    if (event.target.classList.contains('child-btn')) {
+        const clickedButton = event.target;
+        animationHandling(clickedButton);
+        audioHandling('audio' + clickedButton.getAttribute('data-key'));
+    }
+}
+
 document.addEventListener('keydown', keyDown)
+document.addEventListener('click', mouseClick)
